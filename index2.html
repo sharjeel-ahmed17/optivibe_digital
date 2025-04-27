@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optivibe - Marketing Agency</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay {
+            background: rgba(58, 123, 213, 0.9);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .team-card:hover { transform: translateY(-5px);}
+        .testimonial-card { transition: all 0.3s ease;}
+        .testimonial-card:hover { transform: scale(1.02);}
+        .animated-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .animated-btn:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.2);
+            z-index: -2;
+        }
+        .animated-btn:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            z-index: -1;
+        }
+        .animated-btn:hover:before { width: 100%;}
+        .fade-in { animation: fadeIn 0.8s ease-in forwards; opacity: 0;}
+        @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to{opacity: 1; transform: translateY(0);}}
+        .delay-100{ animation-delay: 0.1s;}
+        .delay-200{ animation-delay: 0.2s;}
+        .delay-300{ animation-delay: 0.3s;}
+        .delay-400{ animation-delay: 0.4s;}
+        .delay-500{ animation-delay: 0.5s;}
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease;}
+        .reveal.active { opacity: 1; transform: translateY(0);}
+        .count-up { display: inline-block;}
+        html, body { width:100%; height:auto; overflow: visible !important;}
+        .animated-btn:before, .animated-btn:after { display: none;}
+        /* Hamburger styles */
+        .hamburger {
+            display: inline-block;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            width: 32px;
+            height: 32px;
+            justify-content: center;
+            align-items: center;
+        }
+        .hamburger span {
+            display: block;
+            height: 4px;
+            width: 25px;
+            background: #2563eb;
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: 0.4s;
+        }
+        .hamburger.active .bar1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger.active .bar2 {
+            opacity: 0;
+        }
+        .hamburger.active .bar3 {
+            transform: rotate(45deg) translate(-6px, -6px);
+        }
+        .mobile-menu {
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
+            width: 100%;
+        }
+        /* Portfolio Tab Active */
+        .portfolio-tab.active, .portfolio-tab:focus {
+            background-color: #2563eb;
+            color: #fff;
+            border-color: #1d4ed8;
+        }
+        .portfolio-tab {
+            transition: background 0.2s, color 0.2s;
+        }
+        /* WhatsApp Floating Button */
+        .whatsapp-fixed {
+            position: fixed;
+            right: 24px;
+            bottom: 28px;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+            border-radius: 9999px;
+            background: #25d366;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInWhatsapp 1s;
+        }
+        @keyframes fadeInWhatsapp {
+            from { opacity: 0; transform: scale(0.7);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .whatsapp-fixed:hover {
+            background: #1ebe5d;
+        }
+        /* Hide scrollbars for PDF export */
+        ::-webkit-scrollbar { width: 8px; background: #fff;}
+        ::-webkit-scrollbar-thumb { background: #cbd5e1;}
+        @media print {
+            nav, .whatsapp-fixed { display: none !important; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+  
+<!-- SERVICES SECTION -->
+<section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal active">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            <p class="mt-6 text-gray-600 max-w-3xl mx-auto">We offer a comprehensive range of digital marketing services to help your business grow and succeed in today's competitive digital landscape.</p>
+        </div>
+        <!-- Services Tabs -->
+        <div class="flex flex-wrap justify-center mb-8 gap-2" id="services-tabs">
+            <button data-filter="all" class="service-tab px-5 py-2 border border-blue-600 bg-blue-600 text-white rounded-md font-medium focus:outline-none">All</button>
+            <button data-filter="social" class="service-tab px-5 py-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100 active">Social Media</button>
+            <button data-filter="seo" class="service-tab px-5 py-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">SEO</button>
+            <button data-filter="content" class="service-tab px-5 py-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Content Marketing</button>
+            <button data-filter="ppc" class="service-tab px-5 py-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">PPC</button>
+            <button data-filter="email" class="service-tab px-5 py-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Email Marketing</button>
+            <button data-filter="web" class="service-tab px-5 py-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Web Dev</button>
+        </div>
+        <!-- Services Grid -->
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Service Card: Social Media Marketing -->
+            <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal service-all service-social active">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Social Media Marketing" class="w-full h-44 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Social Media Marketing</h3>
+                    <p class="text-gray-600 mb-4">Grow your brand across platforms &amp; engage your audience using innovative strategies.</p>
+                    <ul class="space-y-2 mb-4 text-gray-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Strategic content planning</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Paid campaigns</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Community management</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Analytics &amp; Reporting</li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Service Card: SEO -->
+            <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-100 service-all service-seo active">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Search Engine Optimization" class="w-full h-44 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Search Engine Optimization</h3>
+                    <p class="text-gray-600 mb-4">Boost your website rankings, traffic, and sales with proven SEO tactics.</p>
+                    <ul class="space-y-2 mb-4 text-gray-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Keyword Research</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>On-site/Technical SEO</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Link Building</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>SEO Audit &amp; Reporting</li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Service Card: Content Marketing -->
+            <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-200 service-all service-content active">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Content Marketing" class="w-full h-44 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Content Marketing</h3>
+                    <p class="text-gray-600 mb-4">Attract and convert with strategic blogs, ebooks, and social content creation.</p>
+                    <ul class="space-y-2 mb-4 text-gray-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Content Strategy</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Blogs &amp; Long-form</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Ebooks &amp; Guides</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Performance Analysis</li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Service Card: PPC Advertising -->
+            <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-300 service-all service-ppc active">
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="PPC Advertising" class="w-full h-44 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">PPC Advertising</h3>
+                    <p class="text-gray-600 mb-4">Instantly drive targeted traffic &amp; leads with paid ad campaigns on Google &amp; Social.</p>
+                    <ul class="space-y-2 mb-4 text-gray-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Google Ads</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Display/Remarketing</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Landing Page Optimization</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>ROAS Tracking</li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Service Card: Email Marketing -->
+            <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-400 service-all service-email active">
+                <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Email Marketing" class="w-full h-44 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Email Marketing</h3>
+                    <p class="text-gray-600 mb-4">Personalize your outreach with high-converting email &amp; automation campaigns.</p>
+                    <ul class="space-y-2 mb-4 text-gray-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Strategy &amp; List Building</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Copywriting &amp; Design</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Automation</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>A/B Testing</li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Service Card: Web Design & Development -->
+            <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-500 service-all service-web active">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Web Design &amp; Development" class="w-full h-44 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Web Design &amp; Development</h3>
+                    <p class="text-gray-600 mb-4">Launch stunning, user-friendly websites optimized for conversion and growth.</p>
+                    <ul class="space-y-2 mb-4 text-gray-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Responsive Design</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>UI/UX Optimization</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>E-commerce Solutions</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Maintenance &amp; Support</li>
+                    </ul>
+                    <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                        <i class="fas fa-chevron-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Portfolio</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-3xl mx-auto">Explore our recent projects and see how we've helped businesses across various industries achieve their digital marketing goals.</p>
+            </div>
+            <!-- TABS -->
+            <div class="flex flex-wrap mb-8 reveal" id="portfolio-tabs">
+                <button data-filter="all" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-blue-600 text-white rounded-md font-medium active focus:outline-none focus:ring-2 focus:ring-blue-400">All</button>
+                <button data-filter="social" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Social Media</button>
+                <button data-filter="seo" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">SEO</button>
+                <button data-filter="content" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Content Marketing</button>
+                <button data-filter="ppc" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">PPC</button>
+                <button data-filter="email" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Email Marketing</button>
+                <button id="portfolio-viewall" class="portfolio-tab px-4 py-2 mb-2 bg-green-500 text-white rounded-md font-medium ml-auto sm:ml-4 hover:bg-green-600 focus:outline-none" style="margin-left:auto">View All</button>
+            </div>
+            <!-- PORTFOLIO GRID -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1: social, seo -->
+                <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal" data-cat="social seo">
+                    <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Tech+Company+Campaign" alt="Tech Company Campaign" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                        <h3 class="text-xl font-bold mb-2">Tech Company Campaign</h3>
+                        <p class="text-center mb-4">Increased organic traffic by 150% through comprehensive SEO strategy.</p>
+                        <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 2: social -->
+                <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-100" data-cat="social">
+                    <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=E-commerce+Brand" alt="E-commerce Brand" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Brand</h3>
+                        <p class="text-center mb-4">Drove 200% ROI on social media advertising campaigns.</p>
+                        <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 3: content -->
+                <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-200" data-cat="content">
+                    <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Finance+Company" alt="Finance Company" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                        <h3 class="text-xl font-bold mb-2">Finance Company</h3>
+                        <p class="text-center mb-4">Generated 120+ qualified leads through content marketing strategy.</p>
+                        <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 4: email -->
+                <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-300" data-cat="email">
+                    <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Health+&+Wellness" alt="Health & Wellness" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                        <h3 class="text-xl font-bold mb-2">Health & Wellness</h3>
+                        <p class="text-center mb-4">Increased email open rates by 45% through personalized campaigns.</p>
+                        <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 5: ppc -->
+                <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-400" data-cat="ppc">
+                    <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Retail+Brand" alt="Retail Brand" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                        <h3 class="text-xl font-bold mb-2">Retail Brand</h3>
+                        <p class="text-center mb-4">Achieved 320% ROAS through targeted PPC advertising campaigns.</p>
+                        <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                    </div>
+                </div>
+                <!-- Portfolio Item 6: ppc, seo -->
+                <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-500" data-cat="ppc seo">
+                    <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Real+Estate+Agency" alt="Real Estate Agency" class="w-full h-64 object-cover">
+                    <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                        <h3 class="text-xl font-bold mb-2">Real Estate Agency</h3>
+                        <p class="text-center mb-4">Developed comprehensive digital strategy resulting in 85% increase in leads.</p>
+                        <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12 reveal">
+                <a href="#" class="animated-btn inline-block px-6 py-3 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition-colors" id="view-all-mobile-btn">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- SCRIPTS -->
+    <script>
+        // Hamburger menu for mobile
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburgerBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== "0px") {
+                mobileMenu.style.maxHeight = "0px";
+            } else {
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+            }
+        });
+        document.addEventListener('click', function(e) {
+            if(!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target) && window.innerWidth<768){
+                hamburgerBtn.classList.remove('active');
+                mobileMenu.style.maxHeight = "0px";
+            }
+        });
+
+        // Navigation smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(document.querySelector(this.getAttribute('href'))) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.style.maxHeight = "0px";
+                }
+            });
+        });
+
+        // Reveal on scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Hero counter
+        function animateCounters() {
+            document.querySelectorAll('.count-up').forEach(counter => {
+                const raw = counter.textContent;
+                const target = parseInt(raw);
+                const increment = target / 30;
+                let current = 0;
+                function updateCounter() {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.ceil(current) + '+';
+                        setTimeout(updateCounter, 50);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                }
+                updateCounter();
+            });
+        }
+        const counterSection = document.querySelector('#home');
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounters();
+                observer.disconnect();
+            }
+        });
+        observer.observe(counterSection);
+
+        // Portfolio Tabs Functionality
+        const portfolioTabs = document.querySelectorAll('.portfolio-tab');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        function setTabActive(tab) {
+            portfolioTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+        }
+        function filterPortfolio(cat) {
+            if(cat==='all') {
+                portfolioItems.forEach(item => item.style.display = '');
+            } else {
+                portfolioItems.forEach(item => {
+                    if(item.getAttribute('data-cat').split(' ').includes(cat)){
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        }
+        // Setup
+        portfolioTabs.forEach(tab => {
+            tab.addEventListener('click', function(e){
+                // Special view all logic
+                if(this.id==='portfolio-viewall') {
+                    setTabActive(this);
+                    portfolioItems.forEach(item => item.style.display='');
+                    return;
+                }
+                setTabActive(this);
+                // Remove viewall btn active if any
+                if(document.getElementById('portfolio-viewall')) document.getElementById('portfolio-viewall').classList.remove('active');
+                filterPortfolio(this.getAttribute('data-filter'));
+            });
+        });
+        // Mobile View All Projects Button
+        const viewAllMobileBtn = document.getElementById('view-all-mobile-btn');
+        if(viewAllMobileBtn){
+            viewAllMobileBtn.addEventListener('click',function(e){
+                e.preventDefault();
+                // Set "All" tab as active
+                portfolioTabs.forEach(tab=>{
+                    if(tab.getAttribute('data-filter')==='all'){tab.classList.add('active');}
+                    else{tab.classList.remove('active');}
+                });
+                portfolioItems.forEach(item=>item.style.display='');
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+same as portfolio section tab update complete code in services sefction is not working fine

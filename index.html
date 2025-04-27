@@ -1,0 +1,1121 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Optivibe - Marketing Agency</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                color: #333;
+                scroll-behavior: smooth;
+            }
+            .hero-gradient {
+                background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+            }
+            .service-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+            .portfolio-overlay {
+                background: rgba(58, 123, 213, 0.9);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .team-card:hover { transform: translateY(-5px);}
+            .testimonial-card { transition: all 0.3s ease;}
+            .testimonial-card:hover { transform: scale(1.02);}
+            .animated-btn {
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            .animated-btn:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255,255,255,0.2);
+                z-index: -2;
+            }
+            .animated-btn:before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.1);
+                transition: all 0.3s;
+                z-index: -1;
+            }
+            .animated-btn:hover:before { width: 100%;}
+            .fade-in { animation: fadeIn 0.8s ease-in forwards; opacity: 0;}
+            @keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to{opacity: 1; transform: translateY(0);}}
+            .delay-100{ animation-delay: 0.1s;}
+            .delay-200{ animation-delay: 0.2s;}
+            .delay-300{ animation-delay: 0.3s;}
+            .delay-400{ animation-delay: 0.4s;}
+            .delay-500{ animation-delay: 0.5s;}
+            .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease;}
+            .reveal.active { opacity: 1; transform: translateY(0);}
+            .count-up { display: inline-block;}
+            html, body { width:100%; height:auto; overflow: visible !important;}
+            .animated-btn:before, .animated-btn:after { display: none;}
+            /* Hamburger styles */
+            .hamburger {
+                display: inline-block;
+                cursor: pointer;
+                transition: opacity 0.3s;
+                width: 32px;
+                height: 32px;
+                justify-content: center;
+                align-items: center;
+            }
+            .hamburger span {
+                display: block;
+                height: 4px;
+                width: 25px;
+                background: #2563eb;
+                margin: 5px 0;
+                border-radius: 2px;
+                transition: 0.4s;
+            }
+            .hamburger.active .bar1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .hamburger.active .bar2 {
+                opacity: 0;
+            }
+            .hamburger.active .bar3 {
+                transform: rotate(45deg) translate(-6px, -6px);
+            }
+            .mobile-menu {
+                transition: max-height 0.3s ease;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
+                width: 100%;
+            }
+            /* Portfolio Tab Active */
+            .portfolio-tab.active, .portfolio-tab:focus {
+                background-color: #2563eb;
+                color: #fff;
+                border-color: #1d4ed8;
+            }
+            .portfolio-tab {
+                transition: background 0.2s, color 0.2s;
+            }
+            /* WhatsApp Floating Button */
+            .whatsapp-fixed {
+                position: fixed;
+                right: 24px;
+                bottom: 28px;
+                z-index: 1000;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+                border-radius: 9999px;
+                background: #25d366;
+                width: 56px;
+                height: 56px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: fadeInWhatsapp 1s;
+            }
+            @keyframes fadeInWhatsapp {
+                from { opacity: 0; transform: scale(0.7);}
+                to { opacity: 1; transform: scale(1);}
+            }
+            .whatsapp-fixed:hover {
+                background: #1ebe5d;
+            }
+            /* Hide scrollbars for PDF export */
+            ::-webkit-scrollbar { width: 8px; background: #fff;}
+            ::-webkit-scrollbar-thumb { background: #cbd5e1;}
+            @media print {
+                nav, .whatsapp-fixed { display: none !important; }
+            }
+        </style>
+    </head>
+    <body class="overflow-x-hidden">
+
+        <!-- Navigation -->
+        <nav class="bg-white shadow-md fixed w-full z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <h1 class="text-xl font-bold text-blue-600">Optivibe DIGITAL</h1>
+                        </div>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                        <a href="#home" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                        <a href="#services" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Services</a>
+                        <a href="#portfolio" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Portfolio</a>
+                        <a href="#about" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                        <a href="#testimonials" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Testimonials</a>
+                        <a href="#contact" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                    </div>
+                    <div class="flex items-center md:hidden">
+                        <button id="hamburgerBtn" aria-label="Open Menu" class="hamburger focus:outline-none">
+                            <span class="bar1"></span>
+                            <span class="bar2"></span>
+                            <span class="bar3"></span>
+                        </button>
+                    </div>
+                    <div class="hidden md:flex items-center">
+                        <button class="animated-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium text-sm">Get a Quote</button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobileMenu" class="mobile-menu md:hidden max-h-0">
+                <div class="flex flex-col px-4 pb-4 pt-2 space-y-2">
+                    <a href="#home" class="block px-3 py-2 text-gray-800 hover:text-blue-600 focus:text-blue-600 font-medium">Home</a>
+                    <a href="#services" class="block px-3 py-2 text-gray-800 hover:text-blue-600 focus:text-blue-600 font-medium">Services</a>
+                    <a href="#portfolio" class="block px-3 py-2 text-gray-800 hover:text-blue-600 focus:text-blue-600 font-medium">Portfolio</a>
+                    <a href="#about" class="block px-3 py-2 text-gray-800 hover:text-blue-600 focus:text-blue-600 font-medium">About</a>
+                    <a href="#testimonials" class="block px-3 py-2 text-gray-800 hover:text-blue-600 focus:text-blue-600 font-medium">Testimonials</a>
+                    <a href="#contact" class="block px-3 py-2 text-gray-800 hover:text-blue-600 focus:text-blue-600 font-medium">Contact</a>
+                    <button class="animated-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium text-sm mt-2">Get a Quote</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-gradient text-white pt-32 pb-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Transforming Digital Presence into Business Growth</h1>
+                        <p class="text-lg mb-8 text-blue-100">Award-winning digital marketing agency specialized in creating innovative strategies that drive results.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button class="animated-btn bg-white text-blue-600 px-6 py-3 rounded-md font-semibold text-sm"><a href="#services">Our Services</a></button>
+                            <button class="animated-btn border border-white text-white px-6 py-3 rounded-md font-semibold text-sm"><a href="#portfolio">See Our Work</a></button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 fade-in delay-300">
+                        <div class="relative">
+                            <div class="bg-white bg-opacity-20 rounded-xl p-8 backdrop-filter backdrop-blur-sm">
+                                <div class="grid grid-cols-2 gap-6">
+                                    <div class="text-center bg-white bg-opacity-20 rounded-lg p-4">
+                                        <h3 class="text-3xl font-bold mb-1 count-up">250+</h3>
+                                        <p class="text-sm text-blue-100">Projects Completed</p>
+                                    </div>
+                                    <div class="text-center bg-white bg-opacity-20 rounded-lg p-4">
+                                        <h3 class="text-3xl font-bold mb-1 count-up">180+</h3>
+                                        <p class="text-sm text-blue-100">Happy Clients</p>
+                                    </div>
+                                    <div class="text-center bg-white bg-opacity-20 rounded-lg p-4">
+                                        <h3 class="text-3xl font-bold mb-1 count-up">50+</h3>
+                                        <p class="text-sm text-blue-100">Team Experts</p>
+                                    </div>
+                                    <div class="text-center bg-white bg-opacity-20 rounded-lg p-4">
+                                        <h3 class="text-3xl font-bold mb-1 count-up">15+</h3>
+                                        <p class="text-sm text-blue-100">Years Experience</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <!-- ...About section remains unchanged... -->
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">About Our Agency</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    <p class="mt-6 text-gray-600 max-w-3xl mx-auto">At Optivibe Digital, we combine creativity with data-driven strategies to deliver exceptional digital marketing solutions that help businesses thrive in the digital landscape.</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0 reveal">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
+                        <p class="text-gray-600 mb-6">We are committed to helping businesses of all sizes achieve their marketing goals through innovative digital strategies that are tailored to their unique needs and objectives.</p>
+                        
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Approach</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>We start with thorough research and analysis of your business, industry, and competitors.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>We develop customized strategies that align with your specific goals and target audience.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>We implement campaigns using the latest tools and technologies for maximum impact.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>We continuously monitor, analyze, and optimize to ensure the best possible results.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="md:w-1/2 md:pl-10 reveal delay-200">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-blue-200 rounded-lg transform rotate-3"></div>
+                            <div class="relative bg-white p-8 rounded-lg shadow-lg">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-6">Why Choose Us?</h3>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                                <i class="fas fa-brain"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="text-lg font-medium text-gray-800">Expertise & Experience</h4>
+                                            <p class="mt-2 text-gray-600">Our team consists of seasoned professionals with extensive experience in all aspects of digital marketing.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="text-lg font-medium text-gray-800">Data-Driven Approach</h4>
+                                            <p class="mt-2 text-gray-600">We base our strategies on solid data and analytics to ensure measurable results and ROI.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="text-lg font-medium text-gray-800">Creative Solutions</h4>
+                                            <p class="mt-2 text-gray-600">We think outside the box to develop innovative strategies that help your brand stand out.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h4 class="text-lg font-medium text-gray-800">Client-Focused</h4>
+                                            <p class="mt-2 text-gray-600">We prioritize your goals and maintain transparent communication throughout our partnership.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal active">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-3xl mx-auto">We offer a comprehensive range of digital marketing services to help your business grow and succeed in today's competitive digital landscape.</p>
+            </div>
+          
+          
+            <!-- Services Grid -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card: Social Media Marketing -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal service-all service-social active">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Social Media Marketing" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Social Media Marketing</h3>
+                        <p class="text-gray-600 mb-4">Grow your brand across platforms &amp; engage your audience using innovative strategies.</p>
+                        <ul class="space-y-2 mb-4 text-gray-600">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Strategic content planning</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Paid campaigns</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Community management</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Analytics &amp; Reporting</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                            <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card: SEO -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-100 service-all service-seo active">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Search Engine Optimization" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Search Engine Optimization</h3>
+                        <p class="text-gray-600 mb-4">Boost your website rankings, traffic, and sales with proven SEO tactics.</p>
+                        <ul class="space-y-2 mb-4 text-gray-600">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Keyword Research</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>On-site/Technical SEO</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Link Building</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>SEO Audit &amp; Reporting</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                            <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card: Content Marketing -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-200 service-all service-content active">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Content Marketing" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Content Marketing</h3>
+                        <p class="text-gray-600 mb-4">Attract and convert with strategic blogs, ebooks, and social content creation.</p>
+                        <ul class="space-y-2 mb-4 text-gray-600">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Content Strategy</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Blogs &amp; Long-form</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Ebooks &amp; Guides</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Performance Analysis</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                            <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card: PPC Advertising -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-300 service-all service-ppc active">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="PPC Advertising" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">PPC Advertising</h3>
+                        <p class="text-gray-600 mb-4">Instantly drive targeted traffic &amp; leads with paid ad campaigns on Google &amp; Social.</p>
+                        <ul class="space-y-2 mb-4 text-gray-600">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Google Ads</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Display/Remarketing</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Landing Page Optimization</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>ROAS Tracking</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                            <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card: Email Marketing -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-400 service-all service-email active">
+                    <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Email Marketing" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Email Marketing</h3>
+                        <p class="text-gray-600 mb-4">Personalize your outreach with high-converting email &amp; automation campaigns.</p>
+                        <ul class="space-y-2 mb-4 text-gray-600">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Strategy &amp; List Building</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Copywriting &amp; Design</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Automation</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>A/B Testing</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                            <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Service Card: Web Design & Development -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-500 service-all service-web active">
+                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Web Design &amp; Development" class="w-full h-44 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Web Design &amp; Development</h3>
+                        <p class="text-gray-600 mb-4">Launch stunning, user-friendly websites optimized for conversion and growth.</p>
+                        <ul class="space-y-2 mb-4 text-gray-600">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Responsive Design</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>UI/UX Optimization</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>E-commerce Solutions</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Maintenance &amp; Support</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">Learn More
+                            <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Portfolio -->
+        <section id="portfolio" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Portfolio</h2>
+                    <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    <p class="mt-6 text-gray-600 max-w-3xl mx-auto">Explore our recent projects and see how we've helped businesses across various industries achieve their digital marketing goals.</p>
+                </div>
+                <!-- TABS -->
+                <div class="flex flex-wrap mb-8 reveal" id="portfolio-tabs">
+                    <button data-filter="all" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-blue-600 text-white rounded-md font-medium active focus:outline-none focus:ring-2 focus:ring-blue-400">All</button>
+                    <button data-filter="shopify" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-blue-600 text-white rounded-md font-medium active focus:outline-none focus:ring-2 focus:ring-blue-400">Shopify Store</button>
+                    <button data-filter="social" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Social Media</button>
+                    <button data-filter="seo" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">SEO</button>
+                    <button data-filter="content" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Content Marketing</button>
+                    <button data-filter="ppc" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">PPC</button>
+                    <button data-filter="email" class="portfolio-tab px-4 py-2 mr-2 mb-2 border border-blue-600 bg-white text-gray-700 rounded-md font-medium hover:bg-blue-100">Email Marketing</button>
+    
+                    <button id="portfolio-viewall" class="portfolio-tab px-4 py-2 mb-2 bg-green-500 text-white rounded-md font-medium ml-auto sm:ml-4 hover:bg-green-600 focus:outline-none" style="margin-left:auto">View All</button>
+                </div>
+                <!-- PORTFOLIO GRID -->
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- shopify store  -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal" data-cat="shopify">
+                        <img src="./images/portfolio/perfume.png" alt="Tech Company Campaign" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Tech Company Campaign</h3>
+                            <p class="text-center mb-4">Increased organic traffic by 150% through comprehensive SEO strategy.</p>
+                            <a href="https://timezonepk.com/" target="_blank" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Site</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal" data-cat="shopify">
+                        <img src="./images/portfolio/time-zone.png" alt="Tech Company Campaign" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Tech Company Campaign</h3>
+                            <p class="text-center mb-4">Increased organic traffic by 150% through comprehensive SEO strategy.</p>
+                            <a href="https://timezonepk.com/" target="_blank" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Site</a>
+                        </div> 
+                    </div>
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal" data-cat="shopify">
+                        <img src="./images/portfolio/qiswa_rugs.png" alt="Tech Company Campaign" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Tech Company Campaign</h3>
+                            <p class="text-center mb-4">Increased organic traffic by 150% through comprehensive SEO strategy.</p>
+                            <a href="https://timezonepk.com/" target="_blank" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Site</a>
+                        </div>
+                    </div>
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal" data-cat="shopify">
+                        <img src="./images/portfolio/qiswa.png" alt="Tech Company Campaign" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Tech Company Campaign</h3>
+                            <p class="text-center mb-4">Increased organic traffic by 150% through comprehensive SEO strategy.</p>
+                            <a href="https://timezonepk.com/" target="_blank" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Site</a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 1: social, seo -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal" data-cat="social seo">
+                        <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Tech+Company+Campaign" alt="Tech Company Campaign" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Tech Company Campaign</h3>
+                            <p class="text-center mb-4">Increased organic traffic by 150% through comprehensive SEO strategy.</p>
+                            <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 2: social -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-100" data-cat="social">
+                        <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=E-commerce+Brand" alt="E-commerce Brand" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">E-commerce Brand</h3>
+                            <p class="text-center mb-4">Drove 200% ROI on social media advertising campaigns.</p>
+                            <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 3: content -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-200" data-cat="content">
+                        <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Finance+Company" alt="Finance Company" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Finance Company</h3>
+                            <p class="text-center mb-4">Generated 120+ qualified leads through content marketing strategy.</p>
+                            <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 4: email -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-300" data-cat="email">
+                        <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Health+&+Wellness" alt="Health & Wellness" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Health & Wellness</h3>
+                            <p class="text-center mb-4">Increased email open rates by 45% through personalized campaigns.</p>
+                            <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 5: ppc -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-400" data-cat="ppc">
+                        <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Retail+Brand" alt="Retail Brand" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Retail Brand</h3>
+                            <p class="text-center mb-4">Achieved 320% ROAS through targeted PPC advertising campaigns.</p>
+                            <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 6: ppc, seo -->
+                    <div class="portfolio-item relative overflow-hidden rounded-lg shadow-lg reveal delay-500" data-cat="ppc seo">
+                        <img src="https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Real+Estate+Agency" alt="Real Estate Agency" class="w-full h-64 object-cover">
+                        <div class="portfolio-overlay absolute inset-0 flex flex-col justify-center items-center p-4 text-white">
+                            <h3 class="text-xl font-bold mb-2">Real Estate Agency</h3>
+                            <p class="text-center mb-4">Developed comprehensive digital strategy resulting in 85% increase in leads.</p>
+                            <a href="#" class="px-4 py-2 bg-white text-blue-600 rounded-md font-medium">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12 reveal">
+                    <a href="#" class="animated-btn inline-block px-6 py-3 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition-colors" id="view-all-mobile-btn">View All Projects</a>
+                </div>
+            </div>
+        </section>
+    <!-- Team Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Meet Our Team</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-3xl mx-auto">Our team of digital marketing experts is passionate about helping businesses grow and succeed in the digital landscape.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal">
+                    <img src="./images/team/ammad_senior.jpg" alt="CEO" class="w-full h-64 object-cover object-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Ammad Amin</h3>
+                        <p class="text-blue-600 font-medium mb-4">CEO & Founder</p>
+                        <p class="text-gray-600 mb-4">With over 15 years of experience in digital marketing, Sarah leads our team with vision and expertise.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-100">
+                    <img src="./images/team/naqqash_bhai.enc" alt="Marketing Director" class="w-full h-64 object-cover object-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Naqqash Ali Bari</h3>
+                        <p class="text-blue-600 font-medium mb-4">Marketing Director</p>
+                        <p class="text-gray-600 mb-4">Michael specializes in developing comprehensive marketing strategies that deliver exceptional results.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-200">
+                    <img src="./images/team/sharjeel_ahmed.jpg" alt="SEO Specialist" class="w-full h-64 object-cover object-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Sharjeel Ahmed</h3>
+                        <p class="text-blue-600 font-medium mb-4">SEO Specialist</p>
+                        <p class="text-gray-600 mb-4">Emily has a proven track record of improving search rankings and driving organic traffic growth.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 reveal delay-300">
+                    <img src="./images/team/meraj" alt="Social Media Manager" class="w-full h-64 object-cover object-center">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Meraj Ejaz</h3>
+                        <p class="text-blue-600 font-medium mb-4">Social Media Manager</p>
+                        <p class="text-gray-600 mb-4">David is a creative social media strategist who excels at building engaging online communities.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-blue-500 hover:text-blue-700">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-3xl mx-auto">Don't just take our word for it. Here's what our clients have to say about working with us.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white rounded-lg shadow-lg p-8 relative reveal">
+                    <div class="text-blue-600 text-5xl absolute -top-5 left-6 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 relative z-10">Optivibe Digital transformed our online presence completely. Their strategic approach to our SEO and content marketing needs has resulted in a 200% increase in organic traffic and a significant boost in lead generation.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">JD</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">John Doe</h4>
+                            <p class="text-gray-600">CEO, Tech Solutions Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white rounded-lg shadow-lg p-8 relative reveal delay-100">
+                    <div class="text-blue-600 text-5xl absolute -top-5 left-6 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 relative z-10">Working with Optivibe Digital has been a game-changer for our e-commerce business. Their social media and PPC campaigns have delivered exceptional ROI, and their team is always responsive and proactive with new ideas.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">AS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Amanda Smith</h4>
+                            <p class="text-gray-600">Marketing Manager, Fashion Outlet</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white rounded-lg shadow-lg p-8 relative reveal delay-200">
+                    <div class="text-blue-600 text-5xl absolute -top-5 left-6 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 relative z-10">The email marketing campaigns developed by Optivibe Digital have consistently outperformed our expectations. They truly understand our audience and how to communicate our value proposition effectively.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">RJ</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Robert Johnson</h4>
+                            <p class="text-gray-600">Founder, Health Essentials</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card bg-white rounded-lg shadow-lg p-8 relative reveal delay-300">
+                    <div class="text-blue-600 text-5xl absolute -top-5 left-6 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 relative z-10">We've worked with several marketing agencies in the past, but none have delivered the level of results and service that Optivibe Digital has. They're truly invested in our success and it shows in everything they do.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">LT</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Lisa Thompson</h4>
+                            <p class="text-gray-600">Director, Real Estate Group</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card bg-white rounded-lg shadow-lg p-8 relative reveal delay-400">
+                    <div class="text-blue-600 text-5xl absolute -top-5 left-6 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 relative z-10">Optivibe Digital's data-driven approach to our marketing challenges has been refreshing. They don't just implement tactics; they develop strategies based on solid research and continuously refine based on performance.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">MB</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Mark Brown</h4>
+                            <p class="text-gray-600">VP Marketing, SaaS Company</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card bg-white rounded-lg shadow-lg p-8 relative reveal delay-500">
+                    <div class="text-blue-600 text-5xl absolute -top-5 left-6 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 relative z-10">The team at Optivibe Digital are true experts in their field. Their strategic guidance has been invaluable to our business, and they consistently go above and beyond to ensure we achieve our marketing objectives.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">KW</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Karen Wilson</h4>
+                            <p class="text-gray-600">Owner, Boutique Retail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <p class="mt-6 text-gray-600 max-w-3xl mx-auto">Ready to take your digital marketing to the next level? Contact us today to discuss how we can help you achieve your business goals.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg reveal">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-800">Our Office</h4>
+                                <p class="mt-1 text-gray-600">123 Marketing Street, Suite 456<br>New York, NY 10001</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-phone-alt text-blue-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-800">Phone</h4>
+                                <p class="mt-1 text-gray-600">+92 323681524</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-800">Email</h4>
+                                <p class="mt-1 text-gray-600">obtivibeagency@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-clock text-blue-600"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium text-gray-800">Business Hours</h4>
+                                <p class="mt-1 text-gray-600">Monday - Friday: 12:00 AM - 12:00 PM<br>Saturday & Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="text-lg font-medium text-gray-800 mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/optivibedigital/" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" target="_blank" class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/optivibedigital/" target="_blank" class="w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/optivibedigital/" target="_blank" class="w-10 h-10 bg-blue-800 text-white rounded-full flex items-center justify-center hover:bg-blue-900 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal delay-200">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+                    
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="animated-btn w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-700 transition-colors">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-3xl mx-auto reveal">
+                <h2 class="text-3xl font-bold mb-6">Ready to Grow Your Business?</h2>
+                <p class="text-lg mb-8">Partner with us to take your digital marketing to the next level and achieve your business goals.</p>
+                <a href="#contact" class="animated-btn inline-block px-8 py-4 bg-white text-blue-600 rounded-md font-bold hover:bg-gray-100 transition-colors">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h2 class="text-xl font-bold mb-4">Optivibe Digital</h2>
+                    <p class="text-gray-400 mb-6">We help businesses grow through innovative digital marketing strategies that drive results.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/optivibedigital/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/optivibedigital/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/optivibedigital/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Social Media Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Search Engine Optimization</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Content Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">PPC Advertising</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Email Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Web Design & Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-gray-400">123 Marketing Street, Suite 456<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-blue-500 mr-3"></i>
+                            <span class="text-gray-400">+92 3411263007</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-500 mr-3"></i>
+                            <span class="text-gray-400">obtivibeagency@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">&copy; 2025 Optivibe Digital. All rights reserved.</p>
+                    <div class="mt-4 md:mt-0">
+                        <ul class="flex space-x-6">
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+        <!-- WhatsApp Floating Button -->
+        <a href="https://wa.me/923411263007" target="_blank" class="whatsapp-fixed" title="Chat on WhatsApp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp text-3xl text-white"></i>
+        </a>
+
+        <!-- SCRIPTS -->
+        <script>
+            // Hamburger menu for mobile
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburgerBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                if (mobileMenu.style.maxHeight && mobileMenu.style.maxHeight !== "0px") {
+                    mobileMenu.style.maxHeight = "0px";
+                } else {
+                    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+                }
+            });
+            document.addEventListener('click', function(e) {
+                if(!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target) && window.innerWidth<768){
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.style.maxHeight = "0px";
+                }
+            });
+
+            // Navigation smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if(document.querySelector(this.getAttribute('href'))) {
+                        e.preventDefault();
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        hamburgerBtn.classList.remove('active');
+                        mobileMenu.style.maxHeight = "0px";
+                    }
+                });
+            });
+
+            // Reveal on scroll
+            function reveal() {
+                var reveals = document.querySelectorAll(".reveal");
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    var elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    }
+                }
+            }
+            window.addEventListener("scroll", reveal);
+            reveal();
+
+            // Hero counter
+            function animateCounters() {
+                document.querySelectorAll('.count-up').forEach(counter => {
+                    const raw = counter.textContent;
+                    const target = parseInt(raw);
+                    const increment = target / 30;
+                    let current = 0;
+                    function updateCounter() {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.ceil(current) + '+';
+                            setTimeout(updateCounter, 50);
+                        } else {
+                            counter.textContent = target + '+';
+                        }
+                    }
+                    updateCounter();
+                });
+            }
+            const counterSection = document.querySelector('#home');
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    animateCounters();
+                    observer.disconnect();
+                }
+            });
+            observer.observe(counterSection);
+
+            // Portfolio Tabs Functionality
+            const portfolioTabs = document.querySelectorAll('.portfolio-tab');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            function setTabActive(tab) {
+                portfolioTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            }
+            function filterPortfolio(cat) {
+                if(cat==='all') {
+                    portfolioItems.forEach(item => item.style.display = '');
+                } else {
+                    portfolioItems.forEach(item => {
+                        if(item.getAttribute('data-cat').split(' ').includes(cat)){
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            }
+            // Setup
+            portfolioTabs.forEach(tab => {
+                tab.addEventListener('click', function(e){
+                    // Special view all logic
+                    if(this.id==='portfolio-viewall') {
+                        setTabActive(this);
+                        portfolioItems.forEach(item => item.style.display='');
+                        return;
+                    }
+                    setTabActive(this);
+                    // Remove viewall btn active if any
+                    if(document.getElementById('portfolio-viewall')) document.getElementById('portfolio-viewall').classList.remove('active');
+                    filterPortfolio(this.getAttribute('data-filter'));
+                });
+            });
+            // Mobile View All Projects Button
+            const viewAllMobileBtn = document.getElementById('view-all-mobile-btn');
+            if(viewAllMobileBtn){
+                viewAllMobileBtn.addEventListener('click',function(e){
+                    e.preventDefault();
+                    // Set "All" tab as active
+                    portfolioTabs.forEach(tab=>{
+                        if(tab.getAttribute('data-filter')==='all'){tab.classList.add('active');}
+                        else{tab.classList.remove('active');}
+                    });
+                    portfolioItems.forEach(item=>item.style.display='');
+                });
+            }
+        </script>
+    </body>
+    </html>
+
